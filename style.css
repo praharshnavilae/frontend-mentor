@@ -1,60 +1,27 @@
-@font-face {
-    font-family: 'HankenGrotesk';
-    font-display: swap;
-    font-weight: 100 900;
-    src: url('assets/fonts/HankenGrotesk-VariableFont_wght.ttf')
-        format('truetype');
-}
-
 :root {
-    --clr-primary-hsl-400: 252, 100%, 67%;
-    --clr-primary-hsl-500: 256, 72%, 46%;
-    --clr-secondary-hsl-400: 241, 81%, 54%;
-    --clr-secondary-hsl-500: 241, 72%, 46%;
+    --clr-primary-hsl: 158, 36%, 37%;
+    --clr-primary2-hsl: 158, 36%, 20%;
+    --clr-secondary-hsl: 30, 38%, 92%;
 
     --clr-neutral-hsl-100: 0, 0%, 100%;
-    --clr-neutral-hsl-200: 221, 100%, 96%;
-    --clr-neutral-hsl-300: 241, 100%, 89%;
-    --clr-neutral-hsl-700: 224, 30%, 27%;
+    --clr-neutral-hsl-200: 228, 12%, 48%;
+    --clr-neutral-hsl-300: 212, 21%, 14%;
 
-    --clr-primary-400: hsl(var(--clr-primary-hsl-400));
-    --clr-primary-500: hsl(var(--clr-primary-hsl-500)); /*hsla?? (kevin used hsla)*/
-    --clr-secondary-400: hsl(var(--clr-secondary-hsl-400));
-    --clr-secondary-500: hsl(var(--clr-secondary-hsl-500));
-    
+    --clr-primary: hsl(var(--clr-primary-hsl));
+    --clr-primary2: hsl(var(--clr-primary2-hsl));
+    --clr-secondary: hsl(var(--clr-secondary-hsl));
+
     --clr-neutral-100: hsl(var(--clr-neutral-hsl-100));
     --clr-neutral-200: hsl(var(--clr-neutral-hsl-200));
     --clr-neutral-300: hsl(var(--clr-neutral-hsl-300));
-    --clr-neutral-700: hsl(var(--clr-neutral-hsl-700));
 
-    --gradient-primary: linear-gradient(
-        var(--clr-primary-400),
-        var(--clr-secondary-400));
-
-    --gradient-to-transparent: linear-gradient(
-        var(--clr-primary-500),
-        hsl(var(--clr-secondary-hsl-500), 0));
-
-    --clr-accent-1: 0, 100%, 67%;
-    --clr-accent-2: 39, 100%, 56%;
-    --clr-accent-3: 166, 100%, 37%;
-    --clr-accent-4: 234, 85%, 45%;
-
-    --font-family-default: 'HankenGrotesk', sans-serif;
+    --font-family-default: 'Montserrat', sans-serif;
+    --font-family-highlight: 'Fraunces', serif;
 
     --fw-regular: 500;
     --fw-bold: 700;
-    --fw-black: 800;
-
-    --fs-400: 1.125rem;
-    --fs-500: 1.25rem;
-    --fs-600: 1.5rem;
-    --fs-700: 1.75rem;
-    --fs-800: 2rem;
-    --fs-900: 5rem;
 }
 
-/* Simple CSS reset */
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -66,157 +33,119 @@
 
 img, svg {
     display: block;
-    max-width: 100;
+    width: 100%;
 }
 
 body {
     font-family: var(--font-family-default);
-    font-size: var(--fs-400);
-    color: var(--clr-neutral-700);
+    font-size: 0.875rem;
+    font-weight: var(--fw-regular);
+    background: var(--clr-secondary);
+    color: var(--clr-neutral-200);
+
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    line-height: 1.6;
 }
 
-@media (min-width: 600px) {
-    body {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
+@media (min-width:600px) {
+    body{
+        min-height: 130vh;
     }
+}
 }
 
 .flex-group {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
-.grid-flow {
-    display: grid;
-    align-content: start;
-    gap: 1rem;
-}
-
-.grid-flow[data-spacing="large"] {
-    gap: 2rem;
-}
-
-.section-title {
-    font-weight: var(--fw-bold);
-    font-size: var(--fs-600);
+.visually-hidden:not(:focus):not(:active) {
+    clip: rect (0 0 0 0);
+    clip-path: inset (50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 .button {
+    background: var(--clr-primary);
     color: var(--clr-neutral-100);
-    line-height: 1;
-    background: var(--clr-neutral-700);
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     border: 0;
-    border-radius: 100vw;
-    cursor: pointer;
-}
+    border-radius: 0.5rem;
 
-.button:hover, button:focus-visible {
-    background: var(--gradient-primary);
-}
-
-.results-summary {
-    --padding: 2.5rem;
-    --border-radius: 2rem;
-    max-width: 46rem;
-    display: grid;
-}
-
-@media (min-width: 600px) {
-    .results-summary {
-        margin-inline: 1rem;
-        grid-template-columns: 1fr 1fr;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        box-shadow: .5rem 1rem 3rem hsl(var(--clr-neutral-hsl-700), 0.2);
-    }
-}
-
-.results {
-    color: hsl(var(--clr-neutral-hsl-100), 0.7);
-    text-align: center;
-    padding: var(--padding) calc(var(--padding) * 1.5);
-    background: var(--gradient-primary);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-}
-
-@media (min-width: 600px) {
-    .results {
-        border-radius: var(--border-radius);
-    }
-}
-
-.result-score {
-    display: grid;
-    place-content: center;
-    width: 12rem;
-    margin-inline: auto;
-    background: var(--gradient-to-transparent);
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-}
-
-.result-score span {
-    display: block;
-    font-size: var(--fs-900);
-    font-weight: var(--fw-black);
-    line-height: 1;
-    color: var(--clr-neutral-100);
-}
-
-.result-rank {
-    color: var(--clr-neutral-100);
-    font-size: var(--fs-700);
-    font-weight: var(--fw-bold);
-}
-
-.summary {
-    padding: var(--padding);
-}
-
-.summary-item {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
     align-items: center;
-    padding: 1rem;
-    border-radius: .5rem;
-    background-color: hsl(var(--item-color), .1);
+    justify-content: center;
+    gap: 0.75rem;
+
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.summary-item svg {
-    stroke: hsl(var(--item-color));
+.button:is(:hover, :focus) {
+    background: var(--clr-primary2);
 }
 
-.summary-item-title{
-    color:hsl(var(--item-color));
+.button[data-icon="cart"]::before {
+    content: "";
+    background-image: url("images/icon-cart.svg");
+    width: 15px;
+    height: 16px;
+}
+
+.product-preview-card {
+    --inside-padding: 1.5rem;
+    --inside-spacing: 1rem;
+    --font-size-caption: 2rem;
+
+    background: var(--clr-neutral-100);
+    border-radius: 0.6rem;
+    overflow: hidden;
+
+    display: grid;
+    max-width: 600px;
+}
+
+@media (min-width:600px) {
+    .product-preview-card {
+        --inside-padding: 2rem;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.product-details {
+    display: grid;
+    gap: var(--inside-spacing);
+    padding: var(--inside-padding);
+}
+
+.product-category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.product-title {
+    color: var(--clr-neutral-300);
+    font-family: var(--font-family-highlight);
+    font-size: var(--font-size-caption);
     font-weight: var(--fw-bold);
+    line-height: 1;
 }
 
-.summary-item[data-item-type="accent-1"] {
-    --item-color: var(--clr-accent-1);
+.offered-price {
+    color: var(--clr-primary);
+    font-family: var(--font-family-highlight);
+    font-size: var(--font-size-caption);
 }
 
-.summary-item[data-item-type="accent-2"] {
-    --item-color: var(--clr-accent-2);
-}
 
-.summary-item[data-item-type="accent-3"] {
-    --item-color: var(--clr-accent-3);
-}
 
-.summary-item[data-item-type="accent-4"] {
-    --item-color: var(--clr-accent-4);
-}
 
-.summary-score {
-    font-weight: var(--fw-black);
-    color: hsl(var(--clr-neutral-hsl-700), 0.5);
-}
-
-.summary-score span {
-    color: var(--clr-neutral-700);
-}
